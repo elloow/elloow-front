@@ -1,3 +1,5 @@
+![CI](https://github.com/elloow/front/workflows/CI/badge.svg?event=push)
+
 # elloow-front
 
 ## Build Setup
