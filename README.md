@@ -1,10 +1,12 @@
 <div align="center">
 
-![CI](https://github.com/elloow/front/workflows/CI/badge.svg?event=push)
-
-# elloow-front
+# elloow front
 
 Elloow web application (front side) built with [NuxtJS](https://nuxtjs.org/)
+
+<br>
+
+![CI](https://github.com/elloow/elloow-front/workflows/CI/badge.svg?event=push) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 </div>
 
