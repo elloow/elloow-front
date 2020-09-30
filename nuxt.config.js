@@ -5,6 +5,7 @@ export default {
  */
   target: 'static',
   ssr: false,
+  modern: process.env.NODE_ENV === 'production',
   server: {
     host: '0.0.0.0' // default: localhost
   },
@@ -43,7 +44,10 @@ export default {
   ],
 
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
-  axios: {},
+  axios: {
+    credentials: true,
+    baseURL: `${process.env.ELLOOW_API_URL || 'http://127.0.0.1:3333'}`
+  },
 
   // chakra module configuration (https://vue.chakra-ui.com/plugin-options)
   chakra: {
@@ -55,5 +59,7 @@ export default {
   },
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
-  build: {}
+  build: {},
+  publicRuntimeConfig: {},
+  privateRuntimeConfig: {}
 }
