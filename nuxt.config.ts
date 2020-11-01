@@ -1,4 +1,6 @@
-export default {
+import { NuxtConfig } from '@nuxt/types'
+
+export default <NuxtConfig> {
   /*
  ** Nuxt target
  ** See https://nuxtjs.org/api/configuration-target
