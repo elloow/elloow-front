@@ -41,23 +41,13 @@ export default <NuxtConfig> {
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
-    '@chakra-ui/nuxt',
-    '@nuxtjs/emotion'
+    'nuxt-buefy'
   ],
 
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
   axios: {
     credentials: true,
     baseURL: `${process.env.ELLOOW_API_URL || 'http://127.0.0.1:3333'}`
-  },
-
-  // chakra module configuration (https://vue.chakra-ui.com/plugin-options)
-  chakra: {
-    extendTheme: {
-      colors: {
-        brand: { /* ... */ }
-      }
-    }
   },
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
