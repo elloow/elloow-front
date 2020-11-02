@@ -44,7 +44,7 @@
           Already have an account?
         </h5>
 
-        <nuxt-link to="/signup">
+        <nuxt-link to="/login">
           <a class="button is-primary is-light is-fullwidth">
             <strong>Login</strong>
           </a>
