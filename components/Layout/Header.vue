@@ -12,12 +12,12 @@
     <template slot="end">
       <b-navbar-item tag="div">
         <div class="buttons">
-          <nuxt-link to="/log-in">
+          <nuxt-link to="/login">
             <a class="button is-primary">
               <strong>Log In</strong>
             </a>
           </nuxt-link>
-          <nuxt-link to="/sign-up">
+          <nuxt-link to="/signup">
             <a class="button is-primary is-light">
               <strong>Sign Up</strong>
             </a>

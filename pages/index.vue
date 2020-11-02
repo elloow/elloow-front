@@ -13,5 +13,6 @@
 import Vue from 'vue'
 
 export default Vue.extend({
+  layout: 'basic'
 })
 </script>
