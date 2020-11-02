@@ -38,7 +38,7 @@
 
         <nuxt-link to="/signup">
           <a class="button is-primary is-light is-fullwidth">
-            <strong>Sign Up</strong>
+            <strong>Create account</strong>
           </a>
         </nuxt-link>
       </div>
