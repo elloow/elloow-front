@@ -9,7 +9,7 @@
 
       <div class="box">
         <h5 class="title is-5">
-          Log in to elloow
+          Sign up for your elloow account
         </h5>
 
         <b-input v-model="username" type="text" placeholder="Email" />
@@ -25,20 +25,28 @@
 
         <br>
 
+        <b-input
+          type="password"
+          placeholder="Validate password"
+          password-reveal
+        />
+
+        <br>
+
         <b-field v-if="isBadCrendentials" label="Bad credentials" />
 
-        <button class="button is-primary is-fullwidth" @click="loginSubmit">
-          Login
+        <button class="button is-primary is-fullwidth" @click="createAccountSubmit">
+          Create account
         </button>
       </div>
       <div class="box">
         <h5 class="title is-5">
-          Don't have an account?
+          Already have an account?
         </h5>
 
         <nuxt-link to="/signup">
           <a class="button is-primary is-light is-fullwidth">
-            <strong>Create account</strong>
+            <strong>Login</strong>
           </a>
         </nuxt-link>
       </div>
@@ -50,7 +58,7 @@
 import Vue from 'vue'
 export default Vue.extend({
   methods: {
-    async loginSubmit () {
+    async createAccountSubmit () {
 
     }
   }
