@@ -19,4 +19,4 @@ The project is under development. There is no production-ready version.
 Follow steps on the [wiki page](https://github.com/elloow/elloow-front/wiki/Installation)
 
 # License
-This project is licensed under the terms of the [MIT license](https://github.com/elloow/elloow-front/blob/master/LICENSE).
+This project is licensed under the terms of the [GPL-3.0 License](https://github.com/elloow/elloow-front/blob/master/LICENSE).
