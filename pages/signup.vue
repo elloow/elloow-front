@@ -12,32 +12,17 @@
           Sign up for your elloow account
         </h5>
 
-        <b-input v-model="username" type="text" placeholder="Email" />
+        <ValidationObserver v-slot="{ invalid }">
+          <ValidationProvider name="Email" :rules="{ required: true, email: true }">
+            <b-input v-model="email" type="text" placeholder="Email" />
+          </ValidationProvider>
 
-        <br>
+          <br>
 
-        <b-input
-          v-model="password"
-          type="password"
-          placeholder="Password"
-          password-reveal
-        />
-
-        <br>
-
-        <b-input
-          type="password"
-          placeholder="Validate password"
-          password-reveal
-        />
-
-        <br>
-
-        <b-field v-if="isBadCrendentials" label="Bad credentials" />
-
-        <button class="button is-primary is-fullwidth" @click="createAccountSubmit">
-          Create account
-        </button>
+          <button class="button is-primary is-fullwidth" :disabled="invalid" @click="sendEmailForm">
+            Create account
+          </button>
+        </ValidationObserver>
       </div>
       <div class="box">
         <h5 class="title is-5">
@@ -56,9 +41,20 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import { ValidationProvider, ValidationObserver } from 'vee-validate'
+
 export default Vue.extend({
+  components: {
+    ValidationProvider,
+    ValidationObserver
+  },
+  data () {
+    return {
+      email: ''
+    }
+  },
   methods: {
-    async createAccountSubmit () {
+    async sendEmailForm () {
 
     }
   }
