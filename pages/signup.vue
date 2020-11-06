@@ -11,13 +11,27 @@
         <h5 class="title is-5">
           Sign up for your elloow account
         </h5>
-
         <ValidationObserver v-slot="{ invalid }">
-          <ValidationProvider name="Email" :rules="{ required: true, email: true }">
-            <b-input v-model="email" type="text" placeholder="Email" />
-          </ValidationProvider>
+          <div class="field">
+            <ValidationProvider name="Email" :rules="{ required: true, email: true }">
+              <b-input v-model="email" type="text" placeholder="Email" />
+            </ValidationProvider>
+          </div>
 
           <br>
+
+          <div class="field">
+            <ValidationProvider :rules="{ required: { allowFalse: false } }">
+              <b-checkbox
+                v-model="termsAccepted"
+                type="is-success"
+              >
+                I agree to the <NuxtLink to="/terms" target="_blank">
+                  <a>terms and conditions</a>
+                </NuxtLink>
+              </b-checkbox>
+            </ValidationProvider>
+          </div>
 
           <button class="button is-primary is-fullwidth" :disabled="invalid" @click="sendEmailForm">
             Create account
@@ -29,11 +43,13 @@
           Already have an account?
         </h5>
 
-        <nuxt-link to="/login">
-          <a class="button is-primary is-light is-fullwidth">
-            <strong>Login</strong>
-          </a>
-        </nuxt-link>
+        <div class="field">
+          <nuxt-link to="/login">
+            <a class="button is-primary is-light is-fullwidth">
+              <strong>Login</strong>
+            </a>
+          </nuxt-link>
+        </div>
       </div>
     </div>
   </div>
@@ -50,7 +66,8 @@ export default Vue.extend({
   },
   data () {
     return {
-      email: ''
+      email: '',
+      termsAccepted: false as Boolean
     }
   },
   methods: {

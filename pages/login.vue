@@ -13,20 +13,22 @@
         </h5>
 
         <ValidationObserver v-slot="{ invalid }">
-          <ValidationProvider name="Email" :rules="{ required: true, email: true }">
-            <b-input v-model="email" type="text" placeholder="Email" />
-          </ValidationProvider>
+          <div class="field">
+            <ValidationProvider name="Email" :rules="{ required: true, email: true }">
+              <b-input v-model="email" type="text" placeholder="Email" />
+            </ValidationProvider>
+          </div>
 
-          <br>
-
-          <ValidationProvider name="Password" :rules="{ required: true, min: 8 }">
-            <b-input
-              v-model="password"
-              type="password"
-              placeholder="Password"
-              password-reveal
-            />
-          </ValidationProvider>
+          <div class="field">
+            <ValidationProvider name="Password" :rules="{ required: true, min: 8 }">
+              <b-input
+                v-model="password"
+                type="password"
+                placeholder="Password"
+                password-reveal
+              />
+            </ValidationProvider>
+          </div>
 
           <b-field v-if="loginFailed" label="Bad credentials" />
 
