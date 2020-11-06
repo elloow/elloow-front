@@ -33,9 +33,9 @@
             </ValidationProvider>
           </div>
 
-          <button class="button is-primary is-fullwidth" :disabled="invalid" @click="sendEmailForm">
+          <b-button class="button is-primary is-fullwidth" :disabled="invalid" @click="sendEmailForm">
             Create account
-          </button>
+          </b-button>
         </ValidationObserver>
       </div>
       <div class="box">

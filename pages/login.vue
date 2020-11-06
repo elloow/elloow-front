@@ -34,9 +34,9 @@
 
           <br>
 
-          <button class="button is-primary is-fullwidth" :disabled="invalid" @click="loginSubmit">
+          <b-button class="button is-primary is-fullwidth" :disabled="invalid" @click="loginSubmit">
             Login
-          </button>
+          </b-button>
         </ValidationObserver>
       </div>
       <div class="box">
