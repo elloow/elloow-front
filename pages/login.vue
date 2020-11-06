@@ -12,24 +12,30 @@
           Log in to elloow
         </h5>
 
-        <b-input v-model="username" type="text" placeholder="Email" />
+        <ValidationObserver v-slot="{ invalid }">
+          <ValidationProvider name="Email" :rules="{ required: true, email: true }">
+            <b-input v-model="email" type="text" placeholder="Email" />
+          </ValidationProvider>
 
-        <br>
+          <br>
 
-        <b-input
-          v-model="password"
-          type="password"
-          placeholder="Password"
-          password-reveal
-        />
+          <ValidationProvider name="Password" :rules="{ required: true, min: 8 }">
+            <b-input
+              v-model="password"
+              type="password"
+              placeholder="Password"
+              password-reveal
+            />
+          </ValidationProvider>
 
-        <br>
+          <b-field v-if="loginFailed" label="Bad credentials" />
 
-        <b-field v-if="isBadCrendentials" label="Bad credentials" />
+          <br>
 
-        <button class="button is-primary is-fullwidth" @click="loginSubmit">
-          Login
-        </button>
+          <button class="button is-primary is-fullwidth" :disabled="invalid" @click="loginSubmit">
+            Login
+          </button>
+        </ValidationObserver>
       </div>
       <div class="box">
         <h5 class="title is-5">
@@ -48,7 +54,20 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import { ValidationProvider, ValidationObserver } from 'vee-validate'
+
 export default Vue.extend({
+  components: {
+    ValidationProvider,
+    ValidationObserver
+  },
+  data () {
+    return {
+      email: '' as string,
+      password: '' as string,
+      loginFailed: false as Boolean
+    }
+  },
   methods: {
     async loginSubmit () {
 
