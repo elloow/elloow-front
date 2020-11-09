@@ -17,9 +17,9 @@
               <strong>Log In</strong>
             </a>
           </nuxt-link>
-          <nuxt-link to="/signup">
+          <nuxt-link to="/get-started">
             <a class="button is-primary is-light">
-              <strong>Sign Up</strong>
+              <strong>Get started</strong>
             </a>
           </nuxt-link>
         </div>

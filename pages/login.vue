@@ -44,11 +44,8 @@
           Don't have an account?
         </h5>
 
-        <nuxt-link to="/signup">
-          <a class="button is-primary is-light is-fullwidth">
-            <strong>Create account</strong>
-          </a>
-        </nuxt-link>
+        <p>Send your email to your organisation administrator.</p>
+        <p>You will then receive a link to create your account.</p>
       </div>
     </div>
   </div>

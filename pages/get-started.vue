@@ -9,7 +9,7 @@
 
       <div class="box">
         <h5 class="title is-5">
-          Sign up for your elloow account
+          Create your organisation
         </h5>
         <ValidationObserver v-slot="{ invalid }">
           <div class="field">
