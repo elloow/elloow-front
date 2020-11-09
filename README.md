@@ -2,7 +2,7 @@
 
 # elloow front
 
-Elloow web application (front side) built with [NuxtJS](https://nuxtjs.org/)
+elloow web application (front side) built with [NuxtJS](https://nuxtjs.org/)
 
 <br>
 

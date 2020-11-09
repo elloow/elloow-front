@@ -4,7 +4,7 @@
       <b-navbar-item tag="router-link" :to="{ path: '/' }">
         <img
           src="~/assets/elloow.png"
-          alt="Elloow"
+          alt="elloow"
         >
       </b-navbar-item>
     </template>
