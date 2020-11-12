@@ -72,7 +72,27 @@ export default Vue.extend({
   },
   methods: {
     async sendEmailForm () {
-
+      try {
+        await this.$axios.post('/v1/send-organisation-register-link', { email: this.email })
+        await this.$router.push('/')
+      } catch (error) {
+        const responseData = error.response.data
+        if (responseData.codeError === 'VALIDATION_FIELDS_FAILED') {
+          this.$buefy.toast.open({
+            duration: 5000,
+            message: 'Please verify your email.',
+            position: 'is-bottom',
+            type: 'is-warning'
+          })
+        } else {
+          this.$buefy.toast.open({
+            duration: 10000,
+            message: 'Something is wrong. Please try again later.',
+            position: 'is-bottom',
+            type: 'is-danger'
+          })
+        }
+      }
     }
   }
 })
