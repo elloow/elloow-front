@@ -15,7 +15,7 @@
           <b-input v-model="user_email" disabled />
         </b-field>
         <b-field label="Password">
-          <ValidationProvider v-slot="{ errors }" :rules="{ regex:/^(?=.*[A-Z].*[A-Z])(?=.*[\+\-\*\/\+\?\!\]\[\{\}\=\(\)\&\%\¦\°\§].*[\+\-\*\/\+\?\!\]\[\{\}\=\(\)\&\%\¦\°\§])(?=.*[0-9].*[0-9]).{8,}$/ }">
+          <ValidationProvider v-slot="{ errors }" :rules="{ regex:/^(?=.*[A-Z].*[A-Z])(?=.*[\\\+\-\*\/\+\?\!\]\[\{\}\=\(\)\&\%\¦\°\§].*[\\\+\-\*\/\+\?\!\]\[\{\}\=\(\)\&\%\¦\°\§])(?=.*[0-9].*[0-9]).{8,}$/ }">
             <b-input
               v-model="user_password"
               type="password"
@@ -25,7 +25,15 @@
             <span>{{ errors[0] }}</span>
           </ValidationProvider>
         </b-field>
-
+        <p>Password must contain at least :  </p>
+        <div class="content">
+          <ul>
+            <li>2 Uppercase letters</li>
+            <li>2 Symbols</li>
+            <li>2 Numbers</li>
+            <li>8 characters long</li>
+          </ul>
+        </div>
         <br>
 
         <h5 class="title is-5">
@@ -36,6 +44,7 @@
             <b-input v-model="org_name" type="text" placeholder="Organisation name" />
           </ValidationProvider>
         </div>
+        </blockquote>
       </div>
     </div>
   </div>
