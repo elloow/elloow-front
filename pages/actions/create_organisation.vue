@@ -15,7 +15,7 @@
           <b-input v-model="user_email" disabled />
         </b-field>
         <b-field label="Password">
-          <ValidationProvider v-slot="{ errors }" :rules="{ regex:/^(?=.*[A-Z].*[A-Z])(?=.*[\\\+\-\*\/\+\?\!\]\[\{\}\=\(\)\&\%\¦\°\§].*[\\\+\-\*\/\+\?\!\]\[\{\}\=\(\)\&\%\¦\°\§])(?=.*[0-9].*[0-9]).{8,}$/ }">
+          <ValidationProvider v-slot="{ errors }" name="Password" :rules="{ regex:/^(?=.*[A-Z].*[A-Z])(?=.*[\\\+\-\*\/\+\?\!\]\[\{\}\=\(\)\&\%\¦\°\§].*[\\\+\-\*\/\+\?\!\]\[\{\}\=\(\)\&\%\¦\°\§])(?=.*[0-9].*[0-9]).{8,}$/ }">
             <b-input
               v-model="user_password"
               type="password"
@@ -44,7 +44,12 @@
             <b-input v-model="org_name" type="text" placeholder="Organisation name" />
           </ValidationProvider>
         </div>
-        </blockquote>
+
+        <br>
+
+        <b-button class="button is-primary is-fullwidth" @click="formSubmit">
+          Start now
+        </b-button>
       </div>
     </div>
   </div>
@@ -74,6 +79,15 @@ export default Vue.extend({
       user_email: '' as string,
       user_password: '' as string,
       org_name: '' as string
+    }
+  },
+  methods: {
+    async formSubmit () {
+      try {
+        await this.$axios.post('v1/actions/create-user-organisation', { user_email: this.user_email, user_password: this.user_password, org_name: this.org_name }, { params: { action_token: this.token } })
+      } catch (error) {
+        console.info(error.message)
+      }
     }
   }
 })
