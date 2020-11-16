@@ -6,7 +6,8 @@ elloow web application (front side) built with [NuxtJS](https://nuxtjs.org/)
 
 <br>
 
-![CI](https://github.com/elloow/elloow-front/workflows/CI/badge.svg?event=push) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+![CI](https://github.com/elloow/elloow-front/workflows/CI/badge.svg?event=push)
+![GitHub](https://img.shields.io/github/license/elloow/elloow-front)
 
 </div>
 
