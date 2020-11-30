@@ -13,6 +13,11 @@
 import Vue from 'vue'
 
 export default Vue.extend({
-  layout: 'basic'
+  layout: 'basic',
+  data () {
+    return {
+      animated: true
+    }
+  }
 })
 </script>

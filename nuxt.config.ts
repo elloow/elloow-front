@@ -5,11 +5,14 @@ export default <NuxtConfig> {
  ** Nuxt target
  ** See https://nuxtjs.org/api/configuration-target
  */
-  target: 'static',
-  ssr: false,
+  target: 'server',
+  ssr: true,
   modern: process.env.NODE_ENV === 'production',
   server: {
     host: '0.0.0.0' // default: localhost
+  },
+  router: {
+    base: process.env.URL_PATH ?? undefined
   },
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
