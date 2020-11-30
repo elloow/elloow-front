@@ -1,0 +1,8 @@
+.nuxt
+node_modules
+.git
+*.log
+.env
+Dockerfile
+.github
+.vscode
