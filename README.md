@@ -23,3 +23,6 @@ Follow steps on the [wiki page](https://github.com/elloow/elloow-front/wiki/Inst
 
 # License
 This project is licensed under the terms of the [GPL-3.0 License](https://github.com/elloow/elloow-front/blob/master/LICENSE).
+
+# Contributors
+[![Contributors Display](https://badges.pufler.dev/contributors/elloow/elloow-front?size=45&padding=15)](https://github.com/orgs/elloow/people)
