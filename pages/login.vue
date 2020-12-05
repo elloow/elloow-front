@@ -69,7 +69,13 @@ export default Vue.extend({
   },
   methods: {
     async loginSubmit () {
-
+      try {
+        this.loginFailed = false
+        await this.$axios.post('/v1/auth/user', { email: this.email, password: this.password })
+        await this.$router.push('/organisations')
+      } catch (error) {
+        this.loginFailed = true
+      }
     }
   }
 })
