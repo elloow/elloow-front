@@ -66,13 +66,14 @@ export default Vue.extend({
     ValidationProvider,
     ValidationObserver
   },
-  async asyncData ({ $axios, route, app }) {
+  async asyncData ({ $axios, route, redirect }) {
     try {
       const token = route.query.action_token
-      const data = (await $axios.post(`v1/check-action-token/organisation-register/${token}`)).data
+      const response = await $axios.post(`v1/check-action-token/organisation-register/${token}`)
+      const data = response.data
       return { token_status: true, token, user_email: data.data.email }
     } catch (error) {
-      app.router?.push('/')
+      return redirect('/')
     }
   },
   data () {
@@ -86,10 +87,30 @@ export default Vue.extend({
   },
   methods: {
     async formSubmit () {
+      if (!(await this.checkOrganisationExist())) {
+        try {
+          await this.$axios.post('v1/actions/create-user-organisation', { user_email: this.user_email, user_password: this.user_password, org_name: this.org_name }, { params: { action_token: this.token } })
+        } catch (error) {
+          this.$buefy.toast.open({
+            message: 'Something wrong. Please verify your data.',
+            position: 'is-bottom',
+            type: 'is-danger'
+          })
+        }
+      } else {
+        this.$buefy.toast.open({
+          message: 'Organisation name already exist.',
+          position: 'is-bottom',
+          type: 'is-danger'
+        })
+      }
+    },
+    async checkOrganisationExist () : Promise<boolean> {
       try {
-        await this.$axios.post('v1/actions/create-user-organisation', { user_email: this.user_email, user_password: this.user_password, org_name: this.org_name }, { params: { action_token: this.token } })
+        await this.$axios.get(`v1/organisations/${this.org_name.replace(' ', '-')}`)
+        return true
       } catch (error) {
-        console.info(error.message)
+        return false
       }
     }
   }

@@ -7,7 +7,7 @@ export default <NuxtConfig> {
  */
   target: 'server',
   ssr: true,
-  modern: process.env.NODE_ENV === 'production',
+  modern: true,
   server: {
     host: '0.0.0.0' // default: localhost
   },
