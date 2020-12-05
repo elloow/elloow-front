@@ -11,45 +11,47 @@
         <h5 class="title is-5">
           Create your account
         </h5>
-        <b-field label="Email">
-          <b-input v-model="user_email" disabled />
-        </b-field>
-        <b-field label="Password">
-          <ValidationProvider v-slot="{ errors }" name="Password" :rules="{ regex:/^(?=.*[A-Z].*[A-Z])(?=.*[\\\+\-\*\/\+\?\!\]\[\{\}\=\(\)\&\%\¦\°\§].*[\\\+\-\*\/\+\?\!\]\[\{\}\=\(\)\&\%\¦\°\§])(?=.*[0-9].*[0-9]).{8,}$/ }">
-            <b-input
-              v-model="user_password"
-              type="password"
-              placeholder="Account password"
-              password-reveal
-            />
-            <span>{{ errors[0] }}</span>
-          </ValidationProvider>
-        </b-field>
-        <p>Password must contain at least :  </p>
-        <div class="content">
-          <ul>
-            <li>2 Uppercase letters</li>
-            <li>2 Symbols</li>
-            <li>2 Numbers</li>
-            <li>8 characters long</li>
-          </ul>
-        </div>
-        <br>
+        <ValidationObserver v-slot="{ invalid }">
+          <b-field label="Email">
+            <b-input v-model="user_email" disabled />
+          </b-field>
+          <b-field label="Password">
+            <ValidationProvider v-slot="{ errors }" name="Password" :rules="{ regex:/^(?=.*[A-Z].*[A-Z])(?=.*[\\\+\-\*\/\+\?\!\]\[\{\}\=\(\)\&\%\¦\°\§\$].*[\\\+\-\*\/\+\?\!\]\[\{\}\=\(\)\&\%\¦\°\§])(?=.*[0-9].*[0-9]).{8,}$/ }">
+              <b-input
+                v-model="user_password"
+                type="password"
+                placeholder="Account password"
+                password-reveal
+              />
+              <span>{{ errors[0] }}</span>
+            </ValidationProvider>
+          </b-field>
+          <p>Password must contain at least :  </p>
+          <div class="content">
+            <ul>
+              <li>2 Uppercase letters</li>
+              <li>2 Symbols</li>
+              <li>2 Numbers</li>
+              <li>8 characters long</li>
+            </ul>
+          </div>
+          <br>
 
-        <h5 class="title is-5">
-          Create organisation
-        </h5>
-        <div class="field">
-          <ValidationProvider name="Name" :rules="{ required: true, min: 5 }">
-            <b-input v-model="org_name" type="text" placeholder="Organisation name" />
-          </ValidationProvider>
-        </div>
+          <h5 class="title is-5">
+            Create organisation
+          </h5>
+          <div class="field">
+            <ValidationProvider name="Name" :rules="{ required: true, min: 5 }">
+              <b-input v-model="org_name" type="text" placeholder="Organisation name" />
+            </ValidationProvider>
+          </div>
 
-        <br>
+          <br>
 
-        <b-button class="button is-primary is-fullwidth" @click="formSubmit">
-          Start now
-        </b-button>
+          <b-button class="button is-primary is-fullwidth" :disabled="invalid" @click="formSubmit">
+            Start now
+          </b-button>
+        </ValidationObserver>
       </div>
     </div>
   </div>
@@ -57,11 +59,12 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { ValidationProvider } from 'vee-validate'
+import { ValidationProvider, ValidationObserver } from 'vee-validate'
 
 export default Vue.extend({
   components: {
-    ValidationProvider
+    ValidationProvider,
+    ValidationObserver
   },
   async asyncData ({ $axios, route, app }) {
     try {
