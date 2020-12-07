@@ -16,7 +16,7 @@
             <b-input v-model="user_email" disabled />
           </b-field>
           <b-field label="Password">
-            <ValidationProvider name="Password" :rules="{ regex:/^(?=.*[A-Z].*[A-Z])(?=.*[\\\+\-\*\/\+\?\!\]\[\{\}\=\(\)\&\%\¦\°\§\$].*[\\\+\-\*\/\+\?\!\]\[\{\}\=\(\)\&\%\¦\°\§])(?=.*[0-9].*[0-9]).{8,}$/ }">
+            <ValidationProvider name="Password" :rules="{ regex:/^(?=.*[A-Z]){2,}(?=.*[\\\+\-\*\/\+\?\!\]\[\{\}\=\(\)\&\%\¦\°\§\$]){2,}(?=.*[0-9]){2,}.{8,}$/ }">
               <b-input
                 v-model="user_password"
                 type="password"
