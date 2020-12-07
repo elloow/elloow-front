@@ -16,23 +16,39 @@
             <b-input v-model="user_email" disabled />
           </b-field>
           <b-field label="Password">
-            <ValidationProvider v-slot="{ errors }" name="Password" :rules="{ regex:/^(?=.*[A-Z].*[A-Z])(?=.*[\\\+\-\*\/\+\?\!\]\[\{\}\=\(\)\&\%\¦\°\§\$].*[\\\+\-\*\/\+\?\!\]\[\{\}\=\(\)\&\%\¦\°\§])(?=.*[0-9].*[0-9]).{8,}$/ }">
+            <ValidationProvider name="Password" :rules="{ regex:/^(?=.*[A-Z].*[A-Z])(?=.*[\\\+\-\*\/\+\?\!\]\[\{\}\=\(\)\&\%\¦\°\§\$].*[\\\+\-\*\/\+\?\!\]\[\{\}\=\(\)\&\%\¦\°\§])(?=.*[0-9].*[0-9]).{8,}$/ }">
               <b-input
                 v-model="user_password"
                 type="password"
                 placeholder="Account password"
                 password-reveal
+                @input="checkPasswordRegex"
               />
-              <span>{{ errors[0] }}</span>
             </ValidationProvider>
           </b-field>
           <p>Password must contain at least :  </p>
           <div class="content">
             <ul>
-              <li>2 Uppercase letters</li>
-              <li>2 Symbols</li>
-              <li>2 Numbers</li>
-              <li>8 characters long</li>
+              <li>
+                <b-tag :type="password_rule_uppercases ? 'is-success' : 'is-danger'">
+                  2 Uppercase letters
+                </b-tag>
+              </li>
+              <li>
+                <b-tag :type="password_rule_symbols ? 'is-success' : 'is-danger'">
+                  2 Symbols
+                </b-tag>
+              </li>
+              <li>
+                <b-tag :type="password_rule_numbers ? 'is-success' : 'is-danger'">
+                  2 Numbers
+                </b-tag>
+              </li>
+              <li>
+                <b-tag :type="password_rule_length ? 'is-success' : 'is-danger'">
+                  8 characters long
+                </b-tag>
+              </li>
             </ul>
           </div>
           <br>
@@ -82,7 +98,11 @@ export default Vue.extend({
       token: '' as string,
       user_email: '' as string,
       user_password: '' as string,
-      org_name: '' as string
+      org_name: '' as string,
+      password_rule_uppercases: false as boolean,
+      password_rule_symbols: false as boolean,
+      password_rule_numbers: false as boolean,
+      password_rule_length: false as boolean
     }
   },
   methods: {
@@ -112,6 +132,16 @@ export default Vue.extend({
       } catch (error) {
         return false
       }
+    },
+    checkPasswordRegex () {
+      const uppRegex = /^(.*?[A-Z]){2,}.*$/
+      const symbolsRegex = /^(.*?[\\+\-*/+?!\][{}=()&%¦°§$]){2,}.*$/
+      const numRegex = /^(.*?[0-9]){2,}.*$/
+      const lenghtRegex = /^.{8,}$/
+      this.password_rule_uppercases = uppRegex.test(this.user_password)
+      this.password_rule_symbols = symbolsRegex.test(this.user_password)
+      this.password_rule_numbers = numRegex.test(this.user_password)
+      this.password_rule_length = lenghtRegex.test(this.user_password)
     }
   }
 })
