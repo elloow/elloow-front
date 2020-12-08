@@ -39,9 +39,6 @@
 <script lang="ts">
 import Vue from 'vue'
 export default Vue.extend({
-  model: {
-    event: 'blur'
-  },
   data () {
     return {
       rule_uppercases: false as boolean,
@@ -62,7 +59,7 @@ export default Vue.extend({
       this.rule_length = lenghtRegex.test(value)
     },
     handleInput (value: string) {
-      this.$emit('blur', value)
+      this.$emit('input', value)
       this.checkPassword(value)
     }
   }
