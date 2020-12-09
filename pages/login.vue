@@ -67,6 +67,12 @@ export default Vue.extend({
       loginFailed: false as Boolean
     }
   },
+  async mounted () {
+    try {
+      await this.$axios.get('/v1/auth/user', { progress: false })
+      await this.$router.push('/organisations')
+    } catch (error) { }
+  },
   methods: {
     async loginSubmit () {
       try {
