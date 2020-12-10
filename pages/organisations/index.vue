@@ -1,9 +1,16 @@
 <template>
-  <div>
-    <h1>
-      Organisations
-    </h1>
-    <p>{{ organisations }}</p>
+  <div class="container input-form">
+    <div class="box">
+      <h1 class="title">
+        Select an organisation
+      </h1>
+      <br>
+      <div v-for="org in organisations" :key="org.name" class="buttons">
+        <nuxt-link class="button is-light is-fullwidth is-large" :to="`/organisations/${org.name}`">
+          {{ org.name }}
+        </nuxt-link>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -20,7 +27,21 @@ export default Vue.extend({
     try {
       const data = (await this.$axios.get('/v1/user/organisations', { progress: false })).data
       this.organisations = data.data
+      if (data.data.length === 1) {
+        this.$router.push(`/organisations/${data.data[0].name}`)
+      }
     } catch (error) { }
   }
 })
 </script>
+
+<style lang="scss">
+.input-form {
+  margin: 0 auto;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+</style>
