@@ -75,6 +75,7 @@ export default Vue.extend({
       if (!(await this.checkOrganisationExist())) {
         try {
           await this.$axios.post('v1/actions/create-user-organisation', { user_email: this.user_email, user_password: this.user_password, org_name: this.org_name }, { params: { action_token: this.token } })
+          await this.$router.push('/login')
         } catch (error) {
           this.$buefy.toast.open({
             message: 'Something wrong. Please verify your data.',
