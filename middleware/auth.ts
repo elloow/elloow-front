@@ -15,11 +15,11 @@ const auth: Middleware = (ctx) => {
     if (data === undefined || !data.auth) {
       throw new Error('Authentication failed')
     } else {
-      // TODO : implement vuex
-      // ctx.store.commit('SET_AUTHENTICATE_USER', {
-      //   username: data.data.username,
-      //   role: data.data.role
-      // })
+      ctx.store.commit('SET_AUTHENTICATE_USER', {
+        email: data.data.email,
+        role: data.data.role.name,
+        organisations: data.data.organisations
+      })
     }
   } catch (error) {
     return ctx.redirect('/login')
