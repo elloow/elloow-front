@@ -14,7 +14,7 @@
     "@nuxtjs/axios": "^5.12.4",
     "cookie-universal-nuxt": "^2.1.4",
     "core-js": "^3.8.1",
-    "nuxt": "^2.14.11",
+    "nuxt": "^2.14.12",
     "nuxt-buefy": "^0.4.4",
     "vee-validate": "^3.4.5"
   },
