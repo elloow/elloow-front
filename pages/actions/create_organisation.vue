@@ -20,12 +20,13 @@
           </ValidationProvider>
           <br>
 
-          <h5 class="title is-5">
+          <div class="title is-5">
             Create organisation
-          </h5>
+          </div>
+
           <div class="field">
-            <ValidationProvider name="Name" :rules="{ required: true, min: 5 }">
-              <b-input v-model="org_name" type="text" placeholder="Organisation name" />
+            <ValidationProvider name="Name" :rules="{ required: true, min: 5, regex: /^[a-zA-Z\s]*$/ }">
+              <b-input v-model="org_name" type="text" placeholder="Organisation name (letters and space only)" />
             </ValidationProvider>
           </div>
 
