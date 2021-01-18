@@ -10,7 +10,7 @@
     "lint": "eslint --ext .ts,.js,.vue --ignore-path .gitignore . "
   },
   "dependencies": {
-    "@nuxt/typescript-runtime": "^2.0.0",
+    "@nuxt/typescript-runtime": "^2.0.1",
     "@nuxtjs/axios": "^5.12.5",
     "cookie-universal-nuxt": "^2.1.4",
     "core-js": "^3.8.2",
