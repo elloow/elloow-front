@@ -26,9 +26,10 @@ export default Vue.extend({
   async mounted () {
     try {
       const data = (await this.$axios.get('/v1/user/organisations', { progress: false })).data
-      this.organisations = data.data
       if (data.data.length === 1) {
         this.$router.push(`/organisations/${data.data[0].name}`)
+      } else {
+        this.organisations = data.data
       }
     } catch (error) { }
   }
