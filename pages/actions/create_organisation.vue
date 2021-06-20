@@ -81,7 +81,7 @@ export default Vue.extend({
   },
   async mounted () {
     try {
-      const token = this.$route.query.action_token
+      const token = (this.$route.query.action_token as string) || ''
       const response = await this.$axios.post(
         `v1/check-action-token/organisation-register/${token}`
       )
@@ -90,7 +90,7 @@ export default Vue.extend({
       this.token = token
       this.user_email = data.data.email
     } catch (error) {
-      return this.$router.push('/')
+      await this.$router.push('/')
     }
   },
   methods: {
