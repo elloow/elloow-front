@@ -15,7 +15,14 @@
           <b-field label="Email">
             <b-input v-model="user_email" disabled />
           </b-field>
-          <ValidationProvider name="Password" :rules="{ regex:/^(?=.*[A-Z].*[A-Z])(?=.*[\\\+\-\*\/\+\?\!\]\[\{\}\=\(\)\&\%\¦\°\§\$].*[\\\+\-\*\/\+\?\!\]\[\{\}\=\(\)\&\%\¦\°\§])(?=.*[0-9].*[0-9]).{8,}$/, required: true }">
+          <ValidationProvider
+            name="Password"
+            :rules="{
+              regex:
+                /^(?=.*[A-Z].*[A-Z])(?=.*[\\\+\-\*\/\+\?\!\]\[\{\}\=\(\)\&\%\¦\°\§\$].*[\\\+\-\*\/\+\?\!\]\[\{\}\=\(\)\&\%\¦\°\§])(?=.*[0-9].*[0-9]).{8,}$/,
+              required: true,
+            }"
+          >
             <conditional-password-input v-model="user_password" />
           </ValidationProvider>
           <br>
@@ -25,14 +32,25 @@
           </div>
 
           <div class="field">
-            <ValidationProvider name="Name" :rules="{ required: true, min: 5, regex: /^[a-zA-Z\s]*$/ }">
-              <b-input v-model="org_name" type="text" placeholder="Organisation name (letters and space only)" />
+            <ValidationProvider
+              name="Name"
+              :rules="{ required: true, min: 5, regex: /^[a-zA-Z\s]*$/ }"
+            >
+              <b-input
+                v-model="org_name"
+                type="text"
+                placeholder="Organisation name (letters and space only)"
+              />
             </ValidationProvider>
           </div>
 
           <br>
 
-          <b-button class="button is-primary is-fullwidth" :disabled="invalid" @click="formSubmit">
+          <b-button
+            class="button is-primary is-fullwidth"
+            :disabled="invalid"
+            @click="formSubmit"
+          >
             Start now
           </b-button>
         </ValidationObserver>
@@ -52,16 +70,6 @@ export default Vue.extend({
     ValidationObserver,
     ConditionalPasswordInput
   },
-  async asyncData ({ $axios, route, redirect }) {
-    try {
-      const token = route.query.action_token
-      const response = await $axios.post(`v1/check-action-token/organisation-register/${token}`)
-      const data = response.data
-      return { token_status: true, token, user_email: data.data.email }
-    } catch (error) {
-      return redirect('/')
-    }
-  },
   data () {
     return {
       token_status: false as boolean,
@@ -71,11 +79,33 @@ export default Vue.extend({
       org_name: '' as string
     }
   },
+  async mounted () {
+    try {
+      const token = this.$route.query.action_token
+      const response = await this.$axios.post(
+        `v1/check-action-token/organisation-register/${token}`
+      )
+      const data = response.data
+      this.token_status = true
+      this.token = token
+      this.user_email = data.data.email
+    } catch (error) {
+      return this.$router.push('/')
+    }
+  },
   methods: {
     async formSubmit () {
       if (!(await this.checkOrganisationExist())) {
         try {
-          await this.$axios.post('v1/actions/create-user-organisation', { user_email: this.user_email, user_password: this.user_password, org_name: this.org_name }, { params: { action_token: this.token } })
+          await this.$axios.post(
+            'v1/actions/create-user-organisation',
+            {
+              user_email: this.user_email,
+              user_password: this.user_password,
+              org_name: this.org_name
+            },
+            { params: { action_token: this.token } }
+          )
           await this.$router.push('/login')
         } catch (error) {
           this.$buefy.toast.open({
@@ -92,9 +122,11 @@ export default Vue.extend({
         })
       }
     },
-    async checkOrganisationExist () : Promise<boolean> {
+    async checkOrganisationExist (): Promise<boolean> {
       try {
-        await this.$axios.get(`v1/organisations/${this.org_name.replace(' ', '-')}`)
+        await this.$axios.get(
+          `v1/organisations/${this.org_name.replace(' ', '-')}`
+        )
         return true
       } catch (error) {
         return false
