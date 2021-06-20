@@ -1,0 +1,16 @@
+version: "3.3"
+services:
+  front:
+    image: "node:lts"
+    container_name: elloow_front
+    command: '/bin/bash -c "yarn install; yarn dev"'
+    working_dir: /home/node/app
+    volumes:
+      - ../:/home/node/app
+    environment: 
+      ELLOOW_API_URL: "http://127.0.0.1:4000"
+    ports:
+      - 4020:3000
+
+networks:
+  elloow-network:
