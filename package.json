@@ -15,7 +15,7 @@
     "cookie-universal-nuxt": "^2.1.4",
     "core-js": "^3.14.0",
     "nuxt": "^2.15.7",
-    "nuxt-buefy": "^0.4.7",
+    "nuxt-buefy": "^0.4.8",
     "vee-validate": "^3.4.5"
   },
   "devDependencies": {
@@ -28,7 +28,7 @@
     "eslint": "^7.26.0",
     "eslint-plugin-nuxt": "^2.0.0",
     "fibers": "^5.0.0",
-    "sass": "^1.33.0",
+    "sass": "^1.35.2",
     "sass-loader": "^10.1.1"
   }
 }
