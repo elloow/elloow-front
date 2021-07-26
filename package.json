@@ -16,7 +16,7 @@
     "core-js": "^3.15.2",
     "nuxt": "^2.15.7",
     "nuxt-buefy": "^0.4.8",
-    "vee-validate": "^3.4.10"
+    "vee-validate": "^3.4.11"
   },
   "devDependencies": {
     "@nuxt/types": "^2.15.7",
