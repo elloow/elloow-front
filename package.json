@@ -13,7 +13,7 @@
     "@nuxt/typescript-runtime": "^2.0.2",
     "@nuxtjs/axios": "^5.13.6",
     "cookie-universal-nuxt": "^2.1.5",
-    "core-js": "^3.18.3",
+    "core-js": "^3.25.3",
     "nuxt": "^2.15.8",
     "nuxt-buefy": "^0.4.10",
     "vee-validate": "^3.4.13"
